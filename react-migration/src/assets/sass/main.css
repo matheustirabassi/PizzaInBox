@@ -497,8 +497,7 @@
 }
 
 .cadUsuario {
-  height: 100%;
-  padding-top: 4vh;
+  padding-top: 2vh;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -526,11 +525,11 @@
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
   grid-gap: 15px;
-  padding: 2rem;
-  font-size: 1.5rem;
+  padding: 1rem;
+  font-size: 1.2rem;
   background-color: #272727;
   border-radius: 5px;
-  width: 60vw;
+  width: 50vw;
 }
 
 .cadUsuario__input-box {

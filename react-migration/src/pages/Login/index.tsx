@@ -1,24 +1,62 @@
+import axios, { AxiosRequestConfig } from "axios";
+import SocialIcons from "components/SocialIcons";
 import "https://kit.fontawesome.com/6d2ea823d0.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "utils/requests";
+
+const endpoint = "logins/passwordValidate";
 
 function Login() {
+	const navigate = useNavigate()
+	
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		const user = (event.target as any).user.value;
+		const password = (event.target as any).password.value;
+		event.preventDefault();
+
+		const config: AxiosRequestConfig = {
+			baseURL: BASE_URL,
+			method: "GET",
+			url: endpoint,
+			params: {
+				user: user,
+				password: password,
+			},
+		};
+
+		axios(config)
+			.then((res) => {
+				console.log(res);
+				navigate("/");
+			})
+			.catch((error) => {
+				console.error(error)
+				const response = error.response.status;
+				if (response === 400) {
+					console.error(`Requisição inválida ${error}`);
+					alert("Requisição inválida")
+				} else if (response === 401) {
+					alert("Login ou senha inválida!");
+				}
+			});
+	};
+
 	return (
 		<body>
 			<main>
 				<section className="login">
 					<h2>Login</h2>
 
-					<div className="login__form">
+					<form className="login__form" onSubmit={handleSubmit}>
 						<div className="login__input-box">
-							<span className="details">Usuario</span>
-							<input type="text" name="" id="userLogin" placeholder="user" />
+							<label className="details">Usuario</label>
+							<input type="text" id="user" placeholder="user" />
 						</div>
 						<div className="login__input-box">
-							<span className="details">Senha</span>
+							<label className="details">Senha</label>
 							<input
 								type="password"
-								name=""
-								id="passLogin"
+								id="password"
 								placeholder="********"
 							/>
 						</div>
@@ -28,9 +66,8 @@ function Login() {
 						<div className="login__btn">
 							<input type="submit" value="Entrar" />
 						</div>
-					</div>
-
-
+					</form>
+					<SocialIcons />
 				</section>
 			</main>
 		</body>

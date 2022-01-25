@@ -1,13 +1,16 @@
 import "assets/sass/main.css";
+import SocialIcons from "components/SocialIcons";
 function Register() {
 	return (
 		<body>
-			<section className="cadUsuario container">
+			<main>
+			<section className="cadUsuario">
 				<div className="cadUsuario__bio-image">
 					<h1 className="text-secondary">Registre-se</h1>
 				</div>
 					<form action="#">
 						<div className="cadUsuario__form">
+						<h2>Documentos pessoais</h2><div></div>
 							<div className="cadUsuario__input-box">
 								<span className="details">CPF</span>
 								<input
@@ -44,6 +47,7 @@ function Register() {
 									placeholder="11912341234"
 								/>
 							</div>
+							<h2>Endereço</h2><div></div>
 							<div className="cadUsuario__input-box">
 								<span className="details">CEP</span>
 								<input
@@ -86,7 +90,7 @@ function Register() {
 									type="text"
 									name=""
 									id="complementoCliente"
-									placeholder="Digite seu complenento"
+									placeholder="Digite seu complemento"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
@@ -130,6 +134,7 @@ function Register() {
 									placeholder="Digite sua cidade"
 								/>
 							</div>
+							<div></div><h2>Login</h2><div></div>
 							<div className="cadUsuario__input-box">
 								<span className="details">Usuario</span>
 								<input
@@ -163,6 +168,9 @@ function Register() {
 						</div>
 					</form>
 			</section>
+			<SocialIcons />
+			</main>
+			
 		</body>
 	);
 }

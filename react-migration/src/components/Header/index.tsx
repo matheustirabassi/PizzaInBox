@@ -1,6 +1,5 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SocialIcons from "components/SocialIcons";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,9 +24,9 @@ class Header extends Component {
 							</a>
 						</li>
 						<li className="menu-nav__item">
-							<a href="/contato" className="menu-nav__link">
+						<Link to="/contact" className="menu-nav__link" aria-label="login">
 								Fale conosco
-							</a>
+							</Link>
 						</li>
 						<li className="menu-nav__item">
 							<Link to="/login" className="menu-nav__link" aria-label="login">

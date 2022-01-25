@@ -5,6 +5,7 @@ import Card3 from "assets/img/card-pizza-vegana.jpg";
 import Card4 from "assets/img/card-pizza-dois-queijos.jpg";
 import Card5 from "assets/img/card-pizza-portuguesa.jpg";
 import Card6 from "assets/img/card-pizza-da-casa.jpg";
+import SocialIcons from "components/SocialIcons";
 
 function Home() {
 	return (
@@ -65,17 +66,7 @@ function Home() {
 							</div>
 						</div>
 					</div>
-					<div className="social-icons">
-						<a href="#!" aria-label="twitter">
-							<i className="fab fa-twitter fa-2x"></i>
-						</a>
-						<a href="#!" aria-label="facebook">
-							<i className="fab fa-facebook fa-2x"></i>
-						</a>
-						<a href="#!" aria-label="instagram">
-							<i className="fab fa-instagram fa-2x"></i>
-						</a>
-					</div>
+					<SocialIcons />
 				</section>
 			</main>
 		</body>
