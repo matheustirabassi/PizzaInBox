@@ -38,12 +38,12 @@ function Register() {
 
 		let passwordConfirm: string = (event.target as any).passwordConfirm.value
 
-		if (customer.login.password === null || customer.login.password === '') {
+		if (!customer.document) {
 			console.error('O cpf está em branco!')
 			alert('O cpf está em branco!\n')
 			return
 		}
-		if (customer.login.password === null || customer.login.password === '') {
+		if (!customer.login.password) {
 			console.error('A senha esta em branco!')
 			alert('A senha esta em branco!\n')
 			return
@@ -168,45 +168,13 @@ function Register() {
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Estado</label>
-								<select id="state" name="estado" aria-label="estado">
-									<option value="AC">Acre</option>
-									<option value="AL">Alagoas</option>
-									<option value="AP">Amapá</option>
-									<option value="AM">Amazonas</option>
-									<option value="BA">Bahia</option>
-									<option value="CE">Ceará</option>
-									<option value="DF">Distrito Federal</option>
-									<option value="ES">Espírito Santo</option>
-									<option value="GO">Goiás</option>
-									<option value="MA">Maranhão</option>
-									<option value="MT">Mato Grosso</option>
-									<option value="MS">Mato Grosso do Sul</option>
-									<option value="MG">Minas Gerais</option>
-									<option value="PA">Pará</option>
-									<option value="PB">Paraíba</option>
-									<option value="PR">Paraná</option>
-									<option value="PE">Pernambuco</option>
-									<option value="PI">Piauí</option>
-									<option value="RJ">Rio de Janeiro</option>
-									<option value="RN">Rio Grande do Norte</option>
-									<option value="RS">Rio Grande do Sul</option>
-									<option value="RO">Rondônia</option>
-									<option value="RR">Roraima</option>
-									<option value="SC">Santa Catarina</option>
-									<option value="SP">São Paulo</option>
-									<option value="SE">Sergipe</option>
-									<option value="TO">Tocantins</option>
-								</select>
+								<select id="state" name="state" aria-label="estado"> </select>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Cidade</span>
-								<input
-									type="text"
-									id="city"
-									placeholder="Digite sua cidade"
-								/>
+								<label className="details">Cidade</label>
+								<select id="city" name="cidade" aria-label="cidade"> </select>
 							</div>
-							<div></div><h2>Login</h2><div></div>
+							<h2>Login</h2><div></div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Usuario</label>
 								<input
