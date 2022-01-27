@@ -1,101 +1,164 @@
 import "assets/sass/main.css";
+import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
+import { useNavigate } from "react-router-dom";
+import { Address, Customer, DocumentType } from "types/Customer";
+import { BASE_URL } from "utils/requests";
+
+const endpoint = '/customers'
+
+
 function Register() {
+	const navigate = useNavigate()
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+		let address: Address = {
+			street: (event.target as any).street.value,
+			district: (event.target as any).district.value,
+			number: (event.target as any).number.value,
+			complement: (event.target as any).complement.value,
+			city: (event.target as any).city.value,
+			cep: (event.target as any).district.value,
+			state: ""
+		};
+		
+		let customer: Customer = {
+			document: (event.target as any).document.value,
+			name: (event.target as any).name.value,
+			email: (event.target as any).email.value,
+			cellphones: [(event.target as any).cellphone.value],
+			login: {
+				user: (event.target as any).user.value,
+				password: (event.target as any).password.value
+			},
+			addresses: [address],
+			documentType: DocumentType.PF
+		};
+
+
+		let passwordConfirm: string = (event.target as any).passwordConfirm.value
+		
+		event.preventDefault();
+		const config: AxiosRequestConfig = {
+			baseURL: BASE_URL,
+			method: "POST",
+			url: endpoint,
+			data: customer
+		}
+
+		axios(config)
+			.then((res) => {
+				console.log(res);
+				navigate("/login");
+			})
+			.catch((error) => {
+				console.error(error)
+				const response = error.response.status;
+				if (response === 400) {
+					const errorsData = error.response.data
+					let message: String = errorsData.msg + "\n"
+					alert(message)
+					errorsData.errors.forEach((fields: any) => {
+						message = message.concat(`campo: ${fields.fieldName}, erro: ${fields.message}\n`)
+					});
+					alert(message)
+				} else if (response === 401) {
+					alert("Login ou senha inválida!");
+				}
+			});
+	};
+
 	return (
 		<body>
 			<main>
-			<section className="cadUsuario">
-				<div className="cadUsuario__bio-image">
-					<h1 className="text-secondary">Registre-se</h1>
-				</div>
-					<form action="#">
+				<section className="cadUsuario">
+					<div className="cadUsuario__bio-image">
+						<h1 className="text-secondary">Registre-se</h1>
+					</div>
+					<form onSubmit={handleSubmit}>
 						<div className="cadUsuario__form">
-						<h2>Documentos pessoais</h2><div></div>
+							<h2>Documentos pessoais</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<span className="details">CPF</span>
+								<label className="details">CPF</label>
 								<input
-									type="text"
-									name=""
-									id="cpfCliente"
-									placeholder="Digite sem CPF"
+									type="number"
+									id="document"
+									placeholder="Digite seu CPF"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Nome</span>
+								<label className="details">Nome</label>
 								<input
 									type="text"
-									name=""
-									id="nomeCliente"
+									id="name"
 									placeholder="Digite seu nome"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Email</span>
+								<label className="details">Email</label>
 								<input
 									type="email"
-									name=""
-									id="emailCliente"
+									id="email"
 									placeholder="email@email.com"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Telefone</span>
+								<label className="details">Telefone</label>
 								<input
 									type="text"
-									name=""
-									id="telCliente"
+									id="cellphone"
 									placeholder="11912341234"
 								/>
 							</div>
 							<h2>Endereço</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<span className="details">CEP</span>
+								<label className="details">CEP</label>
 								<input
 									type="text"
-									name=""
-									id="cepCliente"
+									id="cep"
 									placeholder="Digite seu CEP"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Logradouro</span>
+								<label className="details">Logradouro</label>
 								<input
 									type="text"
 									name=""
-									id="logradouroCliente"
+									id="street"
 									placeholder="Digite seu logradouro"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Numero</span>
+								<label className="details">Numero</label>
 								<input
 									type="text"
 									name=""
-									id="numeroCliente"
+									id="number"
 									placeholder="Digite seu numero"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Bairro</span>
+								<label className="details">Bairro</label>
 								<input
 									type="text"
 									name=""
-									id="bairroCliente"
+									id="district"
 									placeholder="Digite seu bairro"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Complemento</span>
+								<label className="details">Complemento</label>
 								<input
 									type="text"
 									name=""
-									id="complementoCliente"
+									id="complement"
 									placeholder="Digite seu complemento"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Estado</span>
-								<select id="estadoCliente" name="estado" aria-label="estado">
+								<label className="details">Estado</label>
+								<select id="state" name="estado" aria-label="estado">
 									<option value="AC">Acre</option>
 									<option value="AL">Alagoas</option>
 									<option value="AP">Amapá</option>
@@ -129,48 +192,39 @@ function Register() {
 								<span className="details">Cidade</span>
 								<input
 									type="text"
-									name=""
-									id="cidadeCliente"
+									id="city"
 									placeholder="Digite sua cidade"
 								/>
 							</div>
 							<div></div><h2>Login</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Usuario</span>
+								<label className="details">Usuario</label>
 								<input
 									type="text"
-									name=""
-									id="usuarioCliente"
+									id="user"
 									placeholder="Digite seu usuário"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Senha</span>
+								<label className="details">Senha</label>
 								<input
 									type="password"
-									name=""
-									id="senhaCliente"
+									id="password"
 									placeholder="***"
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<span className="details">Confirmar senha</span>
-								<input
-									type="password"
-									name=""
-									id="confSenhaCliente"
-									placeholder="***"
-								/>
+								<label className="details">Confirmar senha</label>
+								<input type="password" id="passwordConfirm" placeholder="***" />
 							</div>
 						</div>
 						<div className="cadUsuario__btn">
 							<input type="submit" value="Cadastrar" />
 						</div>
 					</form>
-			</section>
-			<SocialIcons />
+					<SocialIcons />
+				</section>
 			</main>
-			
 		</body>
 	);
 }
