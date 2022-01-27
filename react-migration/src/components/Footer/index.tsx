@@ -1,4 +1,3 @@
-import SocialIcons from "components/SocialIcons";
 import { Component } from "react";
 
 class Footer extends Component {

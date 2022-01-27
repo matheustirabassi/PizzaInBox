@@ -1,4 +1,3 @@
-import "https://kit.fontawesome.com/6d2ea823d0.js";
 import Card1 from "assets/img/card-pizza-vegetariana.jpg";
 import Card2 from "assets/img/card-pizza-calabresa.jpg";
 import Card3 from "assets/img/card-pizza-vegana.jpg";
