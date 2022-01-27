@@ -1,4 +1,0 @@
-[build]
-base = "./view"
-command = "yarn start"
-publish = "./view"
