@@ -21,7 +21,7 @@ function Register() {
 			cep: (event.target as any).district.value,
 			state: ""
 		};
-		
+
 		let customer: Customer = {
 			document: (event.target as any).document.value,
 			name: (event.target as any).name.value,
@@ -37,7 +37,17 @@ function Register() {
 
 
 		let passwordConfirm: string = (event.target as any).passwordConfirm.value
-		
+
+		if (customer.login.password === null || customer.login.password === '') {
+			console.error('O cpf está em branco!')
+			alert('O cpf está em branco!\n')
+			return
+		}
+		if (customer.login.password === null || customer.login.password === '') {
+			console.error('A senha esta em branco!')
+			alert('A senha esta em branco!\n')
+			return
+		}
 		event.preventDefault();
 		const config: AxiosRequestConfig = {
 			baseURL: BASE_URL,
@@ -45,27 +55,28 @@ function Register() {
 			url: endpoint,
 			data: customer
 		}
-
-		axios(config)
-			.then((res) => {
-				console.log(res);
-				navigate("/login");
-			})
-			.catch((error) => {
-				console.error(error)
-				const response = error.response.status;
-				if (response === 400) {
-					const errorsData = error.response.data
-					let message: String = errorsData.msg + "\n"
-					alert(message)
-					errorsData.errors.forEach((fields: any) => {
-						message = message.concat(`campo: ${fields.fieldName}, erro: ${fields.message}\n`)
-					});
-					alert(message)
-				} else if (response === 401) {
-					alert("Login ou senha inválida!");
-				}
-			});
+		if (customer.login.password === passwordConfirm) {
+			axios(config)
+				.then((res) => {
+					console.log(res);
+					navigate("/login");
+				})
+				.catch((error) => {
+					console.error(error)
+					const response = error.response.status;
+					if (response === 400) {
+						const errorsData = error.response.data
+						let message: String = errorsData.msg + "\n"
+						alert(message)
+						errorsData.errors.forEach((fields: any) => {
+							message = message.concat(`campo: ${fields.fieldName}, erro: ${fields.message}\n`)
+						});
+						alert(message)
+					} else if (response === 401) {
+						alert("Login ou senha inválida!");
+					}
+				});
+		}
 	};
 
 	return (
