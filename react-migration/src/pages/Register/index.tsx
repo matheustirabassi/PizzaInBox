@@ -1,4 +1,3 @@
-import "assets/sass/main.css";
 import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
 import { useNavigate } from "react-router-dom";

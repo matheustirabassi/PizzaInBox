@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
-import "https://kit.fontawesome.com/6d2ea823d0.js";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "utils/requests";
 
