@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@hookform/error-message";
 import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
 import { useEffect, useState } from "react";
@@ -5,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Address, Customer, DocumentType } from "types/Customer";
 import { Cities, States } from "types/Location";
+import { ErrorMessageContainer } from "utils/ErrorMessageContainer";
+import ErrorSummary from "utils/ErrorSumary";
 import { BASE_URL } from "utils/requests";
 
 const endpoint = '/customers'
@@ -68,8 +71,10 @@ function Register() {
 					number: "",
 					cep: cepId
 				})
+				setError("addresses[0].cep", { message:"O cep é inválido" })
+				return;
 			}
-			setAddress({
+				setAddress({
 				district: data.bairro,
 				complement: data.complemento,
 				street: data.logradouro,
@@ -77,7 +82,8 @@ function Register() {
 				number: "",
 				cep: cepId
 			})
-		});
+			clearErrors("addresses[0].cep")}
+		);
 	}, [cepId]);
 
 	const handleCepChange = (event: any) => {
@@ -87,22 +93,12 @@ function Register() {
 		}
 	}
 	const navigate = useNavigate()
-	const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
+	const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm();
 	const onSubmit = async (data: any) => {
 		data.documentType = DocumentType.PF;
 		const customer: Customer = data;
 		let passwordConfirm: string = data.passwordConfirm
 
-		if (!customer.document) {
-			console.error('O cpf está em branco!')
-			alert('O cpf está em branco!\n')
-			return
-		}
-		if (!customer.login.password || !passwordConfirm) {
-			console.error('A senha esta em branco!')
-			alert('A senha esta em branco!\n')
-			return
-		}
 		const config: AxiosRequestConfig = {
 			baseURL: BASE_URL,
 			method: "POST",
@@ -110,10 +106,10 @@ function Register() {
 			data: customer
 		}
 		if (customer.login.password !== passwordConfirm) {
-			console.error('A senha nao coincide!')
-			alert('A senha nao coincide!')
-			return
+			setError("passwordConfirm", { message: "a senha não coincide." })
+			return;
 		}
+		clearErrors("passwordConfirm")
 		axios(config)
 			.then((res) => {
 				console.log(res);
@@ -147,24 +143,37 @@ function Register() {
 						<div className="cadUsuario__form">
 							<h2>Documentos pessoais</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<label className="details">CPF
+								<label className="details">CPF*
 									<input
-										type="number"
+										type="text"
 										id="document"
 										placeholder="Digite seu CPF"
-										{...register("document")}
+										{...register("document", {
+											minLength: { value: 11, message: "O tamanho deve ser no mínimo de 11." }, 
+											maxLength: {value: 15, message: "O tamanho máximo é 15."},
+											required: "O documento deve ter entre 11 e 15 caracteres."
+										})}
 									/>
 								</label>
+								<ErrorMessage errors={ errors }	name="document"as={ <ErrorMessageContainer /> }/>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Nome
 									<input
 										type="text"
 										id="name"
-										placeholder="Digite seu nome"
-										{...register("name")}
+										placeholder="João Silva..."
+										{...register("name", {
+											pattern: {
+												value: /^[a-zA-Z\u00C0-\u017F`]/,
+												message: "O nome não é valido."
+											},
+											maxLength: 100,
+											required: { value: true, message: "O nome é obrigatório." }
+										})}
 									/>
 								</label>
+								<ErrorMessage errors={ errors }	name="name"as={ <ErrorMessageContainer /> }/>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Email
@@ -172,19 +181,23 @@ function Register() {
 										type="email"
 										id="email"
 										placeholder="email@email.com"
-										{...register("email")}
+										{...register("email", { 
+											required: { 	value: true, 	message: "O email é obrigatório." } })}
 									/>
 								</label>
+							<ErrorMessage errors={ errors }	name="email"as={ <ErrorMessageContainer /> }/>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Telefone
 									<input
 										type="text"
 										id="cellphone"
-										placeholder="11912341234"
-										{...register("cellphones[0]")}
+										placeholder="11999999999"
+										{...register("cellphones[0]", { required: { value: true,
+											 message: "O telefone é obrigatório"} })}
 									/>
 								</label>
+								<ErrorMessage errors={ errors }	name="cellphones[0]"as={ <ErrorMessageContainer /> }/>
 							</div>
 							<h2>Endereço</h2><div></div>
 							<div className="cadUsuario__input-box">
@@ -194,11 +207,12 @@ function Register() {
 										id="cep"
 										placeholder="Digite seu CEP"
 										defaultValue={cepId}
-										{...register("addresses[0].cep")}
+										{...register("addresses[0].cep", { minLength: 8, maxLength: 8, required: true })}
 										onChange={handleCepChange}
 										maxLength={8}
 									/>
 								</label>
+								<ErrorMessage errors={ errors }	name="addresses[0].cep"as={ <ErrorMessageContainer /> }/>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Logradouro
@@ -267,7 +281,7 @@ function Register() {
 										type="text"
 										id="user"
 										placeholder="Digite seu usuário"
-										{...register("login.user")}
+										{...register("login.user", { required: true })}
 									/>
 								</label>
 							</div>
@@ -277,16 +291,19 @@ function Register() {
 										type="password"
 										id="password"
 										placeholder="***"
-										{...register("login.password")}
+										{...register("login.password", { required: true })}
 									/>
 								</label>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Confirmar senha
-									<input type="password" id="passwordConfirm" placeholder="***"{...register("passwordConfirm")} />
+									<input type="password" id="passwordConfirm" placeholder="***"
+										{...register("passwordConfirm", { required: true })} />
 								</label>
+								<ErrorMessage errors={ errors }	name="passwordConfirm"as={ <ErrorMessageContainer /> }/>
 							</div>
 						</div>
+						<ErrorSummary errors={errors} />
 						<div className="cadUsuario__btn">
 							<input type="submit" value="Cadastrar" />
 						</div>
