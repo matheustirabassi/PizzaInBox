@@ -1,5 +1,5 @@
 export type Customer = {
-document: number;
+document: string;
 name: string;
 email: string;
 cellphones: number [];
@@ -17,8 +17,7 @@ export type Address = {
 	district: string;
 	number: string;
 	complement: string;
-	state: string;
-	city: string;
+	city: number;
 	cep: string;
 }
 
