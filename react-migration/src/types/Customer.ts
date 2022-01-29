@@ -17,8 +17,7 @@ export type Address = {
 	district: string;
 	number: string;
 	complement: string;
-	state: string;
-	city: string;
+	city: number;
 	cep: string;
 }
 

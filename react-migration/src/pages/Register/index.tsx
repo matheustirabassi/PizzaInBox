@@ -1,15 +1,52 @@
 import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Address, Customer, DocumentType } from "types/Customer";
+import { Cities, States } from "types/Location";
 import { BASE_URL } from "utils/requests";
 
 const endpoint = '/customers'
 
 
 function Register() {
-	const navigate = useNavigate()
+	const [stateId, setStateId] = useState(1);
+	const [states, setStates] = useState<States>(
+		[
+			{
+				id: 0,
+				name: ""
+			}
+		])
 
+	useEffect(() => {
+		axios.get(`${BASE_URL}${endpoint}/states`).then((response) => {
+			const data = response.data as States;
+			setStates(data)
+		});
+	}, [])
+
+
+	const [cities, setCities] = useState<Cities>(
+		[
+			{
+				id: 0,
+				name: ""
+			}
+		]);
+
+	useEffect(() => {
+		axios.get(`${BASE_URL}${endpoint}/cities?stateId=${stateId}`).then((response) => {
+			const data = response.data as Cities;
+			setCities(data);
+		});
+	}, [stateId]);
+
+	const handleStateChange = (event: any) => {
+		setStateId(event.target.value);
+	}
+
+	const navigate = useNavigate()
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
 		let address: Address = {
@@ -19,7 +56,6 @@ function Register() {
 			complement: (event.target as any).complement.value,
 			city: (event.target as any).city.value,
 			cep: (event.target as any).district.value,
-			state: ""
 		};
 
 		let customer: Customer = {
@@ -167,12 +203,21 @@ function Register() {
 								/>
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Estado</label>
-								<select id="state" name="state" aria-label="estado"> </select>
+								<label className="details">Estado
+								<select id="state" name="state" aria-label="estado" onChange={handleStateChange}> 
+									{states.map((state) => (
+										<option value={state.id}>{state.name}</option>
+									))}
+								</select>
+								</label>
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Cidade</label>
-								<select id="city" name="cidade" aria-label="cidade"> </select>
+								<select id="city" name="cidade" aria-label="cidade">
+									{cities.map((city) => (
+										<option value={city.id}>{city.name}</option>
+									))}
+								</select>
 							</div>
 							<h2>Login</h2><div></div>
 							<div className="cadUsuario__input-box">
