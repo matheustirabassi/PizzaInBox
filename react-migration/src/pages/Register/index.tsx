@@ -82,8 +82,8 @@ function Register() {
 				cep: cepId
 			})
 			clearErrors("addresses[0].cep")
-		}
-		);
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cepId]);
 
 	const handleCepChange = (event: any) => {
