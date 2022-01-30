@@ -1,5 +1,5 @@
 export type Customer = {
-document: number;
+document: string;
 name: string;
 email: string;
 cellphones: number [];
