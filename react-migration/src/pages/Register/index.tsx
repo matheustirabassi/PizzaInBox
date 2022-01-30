@@ -71,10 +71,10 @@ function Register() {
 					number: "",
 					cep: cepId
 				})
-				setError("addresses[0].cep", { message:"O cep é inválido" })
+				setError("addresses[0].cep", { message: "O cep é inválido" })
 				return;
 			}
-				setAddress({
+			setAddress({
 				district: data.bairro,
 				complement: data.complemento,
 				street: data.logradouro,
@@ -82,7 +82,8 @@ function Register() {
 				number: "",
 				cep: cepId
 			})
-			clearErrors("addresses[0].cep")}
+			clearErrors("addresses[0].cep")
+		}
 		);
 	}, [cepId]);
 
@@ -149,16 +150,16 @@ function Register() {
 										id="document"
 										placeholder="Digite seu CPF"
 										{...register("document", {
-											minLength: { value: 11, message: "O tamanho deve ser no mínimo de 11." }, 
-											maxLength: {value: 15, message: "O tamanho máximo é 15."},
+											minLength: { value: 11, message: "O tamanho deve ser no mínimo de 11." },
+											maxLength: { value: 15, message: "O tamanho máximo é 15." },
 											required: "O documento deve ter entre 11 e 15 caracteres."
 										})}
 									/>
 								</label>
-								<ErrorMessage errors={ errors }	name="document"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="document" as={<ErrorMessageContainer />} />
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Nome
+								<label className="details">Nome*
 									<input
 										type="text"
 										id="name"
@@ -173,46 +174,55 @@ function Register() {
 										})}
 									/>
 								</label>
-								<ErrorMessage errors={ errors }	name="name"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="name" as={<ErrorMessageContainer />} />
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Email
+								<label className="details">Email*
 									<input
 										type="email"
 										id="email"
 										placeholder="email@email.com"
-										{...register("email", { 
-											required: { 	value: true, 	message: "O email é obrigatório." } })}
+										{...register("email", {
+											required: { value: true, message: "O email é obrigatório." }
+										})}
 									/>
 								</label>
-							<ErrorMessage errors={ errors }	name="email"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="email" as={<ErrorMessageContainer />} />
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Telefone
+								<label className="details">Telefone*
 									<input
 										type="text"
 										id="cellphone"
 										placeholder="11999999999"
-										{...register("cellphones[0]", { required: { value: true,
-											 message: "O telefone é obrigatório"} })}
+										{...register("cellphones[0]", {
+											required: {
+												value: true,
+												message: "O telefone é obrigatório"
+											}
+										})}
 									/>
 								</label>
-								<ErrorMessage errors={ errors }	name="cellphones[0]"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="cellphones[0]" as={<ErrorMessageContainer />} />
 							</div>
 							<h2>Endereço</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<label className="details">CEP
+								<label className="details">CEP*
 									<input
 										type="text"
 										id="cep"
 										placeholder="Digite seu CEP"
 										defaultValue={cepId}
-										{...register("addresses[0].cep", { minLength: 8, maxLength: 8, required: true })}
+										{...register("addresses[0].cep", {
+											minLength: { value: 8, message: "O tamanho mínimo é de 8 caracteres" },
+											maxLength: { value: 8, message: "O CEP é obrigatório" },
+											required: { value: true, message: "O tamanho mínimo é de 10 caracteres" }
+										})}
 										onChange={handleCepChange}
 										maxLength={8}
 									/>
 								</label>
-								<ErrorMessage errors={ errors }	name="addresses[0].cep"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="addresses[0].cep" as={<ErrorMessageContainer />} />
 							</div>
 							<div className="cadUsuario__input-box">
 								<label className="details">Logradouro
@@ -276,31 +286,38 @@ function Register() {
 							</div>
 							<div></div><h2>Login</h2><div></div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Usuario
+								<label className="details">Usuario*
 									<input
 										type="text"
 										id="user"
 										placeholder="Digite seu usuário"
-										{...register("login.user", { required: true })}
+										{...register("login.user", {
+											required: { value: true, message: "O nome de usuário é obrigatório." }
+										})}
 									/>
 								</label>
+								<ErrorMessage errors={errors} name="login.user" as={<ErrorMessageContainer />} />
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Senha
+								<label className="details">Senha*
 									<input
 										type="password"
 										id="password"
 										placeholder="***"
-										{...register("login.password", { required: true })}
+										{...register("login.password", {
+											required: { value: true, message: "A senha é obrigatória." }
+										})}
 									/>
 								</label>
 							</div>
 							<div className="cadUsuario__input-box">
-								<label className="details">Confirmar senha
+								<label className="details">Confirmar senha*
 									<input type="password" id="passwordConfirm" placeholder="***"
-										{...register("passwordConfirm", { required: true })} />
+										{...register("passwordConfirm", {
+											required: { value: true, message: "A senha é obrigatória." }
+										})} />
 								</label>
-								<ErrorMessage errors={ errors }	name="passwordConfirm"as={ <ErrorMessageContainer /> }/>
+								<ErrorMessage errors={errors} name="passwordConfirm" as={<ErrorMessageContainer />} />
 							</div>
 						</div>
 						<ErrorSummary errors={errors} />
