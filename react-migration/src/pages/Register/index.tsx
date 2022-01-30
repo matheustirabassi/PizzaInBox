@@ -30,7 +30,6 @@ function Register() {
 		});
 	}, [])
 
-
 	const [cities, setCities] = useState<Cities>(
 		[
 			{
