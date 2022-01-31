@@ -4,10 +4,34 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
+
+
 	render() {
+
+		let showMenu = false;
+		function toggleMenu() {
+			let hamburger = document.querySelector('.menu-btn__burger');
+			let nav = document.querySelector('.nav');
+			let menuNav = document.querySelector('.menu-nav');
+			let navItems = document.querySelectorAll('.menu-nav__item');
+
+			if (!showMenu) {
+				hamburger?.classList.add('open');
+				nav?.classList.add('open');
+				menuNav?.classList.add('open');
+				navItems.forEach(item => item.classList.add('open'));
+				showMenu = true;
+			} else {
+				hamburger?.classList.remove('open');
+				nav?.classList.remove('open');
+				menuNav?.classList.remove('open');
+				navItems.forEach(item => item.classList.remove('open'));
+				showMenu = false;
+			}
+		}
 		return (
 			<header>
-				<div className="menu-btn">
+				<div className="menu-btn" onClick={ toggleMenu }>
 					<span className="menu-btn__burger"></span>
 				</div>
 
@@ -18,17 +42,17 @@ class Header extends Component {
 								Home
 							</a>
 						</li>
-						<li className="menu-nav__item ">
-							<a href="/pedidos" className="menu-nav__link">
+						<li className="menu-nav__item" onClick={ toggleMenu }>
+							<Link to="/pedidos" className="menu-nav__link">
 								Pedidos
-							</a>
+							</Link>
 						</li>
-						<li className="menu-nav__item">
-						<Link to="/contact" className="menu-nav__link" aria-label="login">
+						<li className="menu-nav__item" onClick={ toggleMenu }>
+							<Link to="/contact" className="menu-nav__link" aria-label="contact">
 								Fale conosco
 							</Link>
 						</li>
-						<li className="menu-nav__item">
+						<li className="menu-nav__item" onClick={ toggleMenu }>
 							<Link to="/login" className="menu-nav__link" aria-label="login">
 								<FontAwesomeIcon icon={faUser} size={"sm"} />
 							</Link>
