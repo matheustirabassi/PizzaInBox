@@ -3,9 +3,7 @@ import Header from "components/Header"
 import Contact from "pages/Contact"
 import Home from "pages/Home"
 import Login from "pages/Login"
-import NoMatch from "pages/NoMatch"
 import Register from "pages/Register"
-import { ReactComponentElement } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 const MyRoutes = () => {
