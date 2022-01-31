@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import SocialIcons from "components/SocialIcons";
 import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "Routes";
 import { BASE_URL } from "utils/requests";
 
 const endpoint = "logins/passwordValidate";
@@ -59,7 +60,7 @@ function Login() {
 							/>
 						</div>
 						<div className="login__add">
-							<Link to="/login/register">Não tenho login</Link>
+							<Link to={ROUTES.REGISTER}>Não tenho login</Link>
 						</div>
 						<div className="login__btn">
 							<input type="submit" value="Entrar" />
