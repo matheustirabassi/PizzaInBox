@@ -8,7 +8,6 @@ import SocialIcons from "components/SocialIcons";
 
 function Home() {
 	return (
-		<body>
 			<main>
 				<section className="home">
 					<div className="home__bio-image">
@@ -68,7 +67,6 @@ function Home() {
 					<SocialIcons />
 				</section>
 			</main>
-		</body>
 	);
 }
 
