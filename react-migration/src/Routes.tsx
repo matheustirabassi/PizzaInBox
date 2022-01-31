@@ -3,6 +3,7 @@ import Header from "components/Header"
 import Contact from "pages/Contact"
 import Home from "pages/Home"
 import Login from "pages/Login"
+import NoMatch from "pages/NoMatch"
 import Register from "pages/Register"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
@@ -15,6 +16,7 @@ const MyRoutes = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/login/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />
+				<Route path="*" element={<NoMatch />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
