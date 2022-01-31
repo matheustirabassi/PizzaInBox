@@ -2,7 +2,6 @@ import SocialIcons from "components/SocialIcons";
 
 function Contact() {
 	return (
-		<body>
 			<main>
 				<section className="contact">
 					<h2>Entre em contato:</h2>
@@ -25,7 +24,6 @@ function Contact() {
 				</section>
 				<SocialIcons />
 			</main>
-		</body>
 	);
 }
 

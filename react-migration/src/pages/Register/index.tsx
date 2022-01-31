@@ -30,6 +30,7 @@ function Register() {
 		});
 	}, [])
 
+
 	const [cities, setCities] = useState<Cities>(
 		[
 			{
@@ -59,7 +60,7 @@ function Register() {
 	})
 
 	useEffect(() => {
-		axios.get(`http://viacep.com.br/ws/${cepId}/json/`).then((response) => {
+		axios.get(`https://viacep.com.br/ws/${cepId}/json/`).then((response) => {
 			const data = response.data as any;
 			if (data.erro) {
 				setAddress({
@@ -133,7 +134,6 @@ function Register() {
 	};
 
 	return (
-		<body>
 			<main>
 				<section className="cadUsuario">
 					<div className="cadUsuario__bio-image">
@@ -269,7 +269,7 @@ function Register() {
 								<label className="details">Estado
 									<select id="state" name="state" aria-label="estado" onChange={handleStateChange}>
 										{states.map((state) => (
-											<option value={state.id}>{state.name}</option>
+											<option value={state.id} key={state.id}>{state.name}</option>
 										))}
 									</select>
 								</label>
@@ -278,7 +278,7 @@ function Register() {
 								<label className="details">Cidade
 									<select id="city" aria-label="cidade" {...register("addresses[0].city")}>
 										{cities.map((city) => (
-											<option value={city.id}>{city.name}</option>
+											<option value={city.id} key={city.id}>{city.name}</option>
 										))}
 									</select>
 								</label>
@@ -327,7 +327,6 @@ function Register() {
 					<SocialIcons />
 				</section>
 			</main>
-		</body>
 	);
 }
 

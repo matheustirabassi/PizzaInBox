@@ -41,7 +41,6 @@ function Login() {
 	};
 
 	return (
-		<body>
 			<main>
 				<section className="login">
 					<h2>Login</h2>
@@ -69,7 +68,6 @@ function Login() {
 					<SocialIcons />
 				</section>
 			</main>
-		</body>
 	);
 }
 export default Login;
