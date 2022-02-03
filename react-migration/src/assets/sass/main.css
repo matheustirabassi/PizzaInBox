@@ -349,6 +349,9 @@
   .about__bio {
     font-size: 1.5rem;
   }
+  .home__bio-image {
+    height: 30vh;
+  }
   .home__cards {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
@@ -526,21 +529,8 @@
   font-size: 1.2rem;
   background-color: #272727;
   border-radius: 5px;
+  width: 70vw;
 }
-
-.error {
-  color: red;
-  font-size: 0.7rem;
-  margin: 5px;
-}
-.error-summary {
-  margin-top: 5px;
-  padding: 5px;
-  border: 1px solid red;
-  color: red;
-  font-size: 0.7rem;
-}
-
 
 .cadUsuario__input-box {
   width: 100%;
@@ -602,6 +592,20 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+  margin: 5px;
+}
+
+.error-summary {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid red;
+  color: red;
+  font-size: 0.7rem;
 }
 
 .login {

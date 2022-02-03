@@ -1,6 +1,5 @@
 .cadUsuario{
-    height: 100%;
-    padding-top: 4vh;
+		padding-top: 2vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -23,11 +22,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 15px;
-      padding: 2rem;
-      font-size: 1.5rem;
+      padding: 1rem;
+      font-size: 1.2rem;
       background-color: $primary-color;
       border-radius: 5px;
-      width: 60vw;
+      width: 70vw;
   }
 
   &__input-box {
@@ -81,4 +80,17 @@
         align-items: center;
   }
 
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+  margin: 5px;
+}
+.error-summary {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid red;
+  color: red;
+  font-size: 0.7rem;
 }

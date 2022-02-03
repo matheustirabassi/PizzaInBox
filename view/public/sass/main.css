@@ -350,7 +350,7 @@
     font-size: 1.5rem;
   }
   .home__bio-image {
-    height: 40vh;
+    height: 30vh;
   }
   .home__cards {
     -ms-grid-columns: (1fr)[2];
@@ -378,7 +378,7 @@
 
 @media screen and (min-width: 1600px) {
   .home__bio-image {
-    height: 50vh;
+    height: 30vh;
   }
 }
 
@@ -497,7 +497,6 @@
 }
 
 .cadUsuario {
-  height: 100%;
   padding-top: 4vh;
   overflow: hidden;
   display: -webkit-box;

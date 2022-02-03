@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import NavBar from "components/NavBar";
 import SocialIcons from "components/SocialIcons";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "Routes";
@@ -42,6 +43,8 @@ function Login() {
 	};
 
 	return (
+		<>
+		<NavBar />
 			<main>
 				<section className="login">
 					<h2>Login</h2>
@@ -69,6 +72,7 @@ function Login() {
 					<SocialIcons />
 				</section>
 			</main>
+		</>
 	);
 }
 export default Login;

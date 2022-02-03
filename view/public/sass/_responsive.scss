@@ -30,7 +30,7 @@
 
     .home{
         &__bio-image{
-            height: 40vh;
+					height: 30vh;
         }
         &__cards{
             grid-template-columns: repeat(2, 1fr);
@@ -60,6 +60,6 @@
 
 @include media-xl{
     .home__bio-image{
-        height: 50vh;
+			height: 30vh;
     }
 }

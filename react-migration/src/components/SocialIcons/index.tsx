@@ -1,3 +1,5 @@
+import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Component } from "react";
 
 class SocialIcons extends Component {
@@ -5,13 +7,13 @@ class SocialIcons extends Component {
 		return (
 			<div className="social-icons">
 				<a href="#!" aria-label="twitter">
-					<i className="fab fa-twitter fa-2x"></i>
+					<FontAwesomeIcon icon={faTwitter} size="2x"></FontAwesomeIcon>
 				</a>
 				<a href="#!" aria-label="twitter">
-					<i className="fab fa-facebook fa-2x"></i>
+					<FontAwesomeIcon icon={faFacebook} size="2x"></FontAwesomeIcon>
 				</a>
-				<a href="#!" aria-label="twitter">
-					<i className="fab fa-instagram fa-2x"></i>
+				<a href="#!" aria-label="instagram">
+					<FontAwesomeIcon icon={faInstagram} size="2x"></FontAwesomeIcon>
 				</a>
 			</div>
 		);
