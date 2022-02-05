@@ -1,10 +1,10 @@
 import axios from "axios";
 import Pagination from "components/Pagination";
 import ProductCard from "components/ProductCard";
-import SocialIcons from "components/SocialIcons";
 import { useEffect, useState } from "react";
 import { ProductPage } from "types/Product";
 import { BASE_URL } from "utils/requests";
+import "./styles.scss";
 function AdminProducts() {
 	const [pageNumber, setPageNumber] = useState(0)
 
@@ -26,30 +26,20 @@ function AdminProducts() {
 			setPage(data);
 		});
 	}, [pageNumber]);
-
+	
 	const handlePageChange = (newPageNumber: number) => {
 		setPageNumber(newPageNumber);
 	}
 	return (
 		<>
-			<main>
-				<section className="conPizza">
-					<div className="conPizza__bio-image">
-						<h1 className="text-secondary">Bem-vindo(a) Admin</h1>
+			<Pagination page={page} onChange={handlePageChange} />
+			<div className="pizzainbox-container">
+				{page.content.map((product) => (
+					<div key={product.id} className="pizzainbox-item">
+						<ProductCard product={product} />
 					</div>
-					<div className="container">
-							<Pagination page={page} onChange={handlePageChange} />
-						<div className="row">
-						{page.content.map((product) => (
-							<div key={product.id} className="col-sm-6 col-lg-4 col-xl-3 md-3"> 
-							<ProductCard product={product} />
-							</div>
-						))}
-						</div>
-					</div>
-					<SocialIcons />
-				</section>
-			</main>
+				))}
+			</div>
 		</>
 	)
 }

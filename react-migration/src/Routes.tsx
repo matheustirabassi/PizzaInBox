@@ -14,6 +14,9 @@ export const ROUTES = {
 	LOGIN: "/login",
 	REGISTER: "/login/register",
 	ADMIN: "/admin",
+	FORM: "/form",
+	PIZZA: "/pizza",
+	PRODUCTS: "/products",
 	NOMATCH: "*"
 }
 const HomeRoutes = () => {
