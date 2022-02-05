@@ -1,4 +1,3 @@
-import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Product } from "types/Product";
 
@@ -11,13 +10,14 @@ function ProductCard({ product }: Props) {
 
 	return (
 		<div>
-			<Container>
+			<div className="pizzainbox-card-bottom-container">
 				<h3>{product.name}</h3>
-
 				<Link to={`/form/${product.id}`}>
-					<Button>Editar</Button>
+					<div className="pizzainbox-btn">
+						<input type="submit" value="Editar" />
+					</div>
 				</Link>
-			</Container>
+			</div>
 		</div>
 	);
 }

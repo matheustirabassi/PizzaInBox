@@ -1,6 +1,6 @@
 import Footer from "components/Footer"
 import NavBar from "components/NavBar"
-import AdminHome from "pages/AdminHome"
+import AdminHome from "pages/Admin"
 import Contact from "pages/Contact"
 import Home from "pages/Home"
 import Login from "pages/Login"

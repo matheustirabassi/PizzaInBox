@@ -1,3 +1,10 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .pizzainbox-pagination-container {
   padding: 15px 0;
   display: -webkit-box;
@@ -32,8 +39,8 @@
 }
 
 .pizzainbox-pagination-button {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 4px;
   background-color: #fff;
   display: -webkit-box;
@@ -66,12 +73,66 @@
 
 .pizzainbox-pagination-container p {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--color-primary);
 }
 
 .pizzainbox-flip-horizontal {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.pizzainbox-btn {
+  height: 50px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.pizzainbox-btn input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #cc4848;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pizzainbox-card-bottom-container {
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 10px 20px 10px;
+  border-radius: 0 0 8px 8px;
+}
+
+.pizzainbox-card-bottom-container h3 {
+  color: #4a4a4a;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  min-height: 40px;
+}
+
+.pizzainbox-form-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=styles.css.map */

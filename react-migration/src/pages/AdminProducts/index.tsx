@@ -1,14 +1,11 @@
 import axios from "axios";
-import AdminNavBar from "components/AdminNavBar";
 import Pagination from "components/Pagination";
 import ProductCard from "components/ProductCard";
 import SocialIcons from "components/SocialIcons";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import { ProductPage } from "types/Product";
 import { BASE_URL } from "utils/requests";
-
-function AdminHome() {
+function AdminProducts() {
 	const [pageNumber, setPageNumber] = useState(0)
 
 	const [page, setPage] = useState<ProductPage>({
@@ -24,7 +21,7 @@ function AdminHome() {
 	})
 
 	useEffect(() => {
-		axios.get(`${BASE_URL}/products?size=12&page=${pageNumber}&sort=title`).then((response) => {
+		axios.get(`${BASE_URL}/products?size=8&page=${pageNumber}&sort=name`).then((response) => {
 			const data = response.data as ProductPage;
 			setPage(data);
 		});
@@ -35,27 +32,21 @@ function AdminHome() {
 	}
 	return (
 		<>
-			<AdminNavBar />
 			<main>
 				<section className="conPizza">
 					<div className="conPizza__bio-image">
 						<h1 className="text-secondary">Bem-vindo(a) Admin</h1>
 					</div>
-					<Container>
-						<Row>
+					<div className="container">
 							<Pagination page={page} onChange={handlePageChange} />
-						</Row>
-						<Row>
-							<Col>
-								<ProductCard product={{
-									id: 0,
-									name: "calabresa",
-									price: 0,
-									description: ""
-								}}></ProductCard>
-							</Col>
-						</Row>
-					</Container>
+						<div className="row">
+						{page.content.map((product) => (
+							<div key={product.id} className="col-sm-6 col-lg-4 col-xl-3 md-3"> 
+							<ProductCard product={product} />
+							</div>
+						))}
+						</div>
+					</div>
 					<SocialIcons />
 				</section>
 			</main>
@@ -63,4 +54,4 @@ function AdminHome() {
 	)
 }
 
-export default AdminHome
+export default AdminProducts

@@ -1,7 +1,6 @@
 import { ReactComponent as Arrow } from 'assets/img/arrow.svg';
-import { Col, Container, Row } from "react-bootstrap";
 import { ProductPage } from "types/Product";
-import './styles.css';
+import './styles.scss';
 
 type Props = {
 	page: ProductPage;
