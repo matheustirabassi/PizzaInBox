@@ -1,7 +1,10 @@
+import NavBar from "components/NavBar";
 import SocialIcons from "components/SocialIcons";
 
 function Contact() {
 	return (
+		<>
+			<NavBar />
 			<main>
 				<section className="contact">
 					<h2>Entre em contato:</h2>
@@ -24,6 +27,7 @@ function Contact() {
 				</section>
 				<SocialIcons />
 			</main>
+		</>
 	);
 }
 

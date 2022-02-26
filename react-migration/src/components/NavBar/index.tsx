@@ -2,13 +2,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import { ROUTES } from "Routes";
 
-class Header extends Component {
-
-
+class NavBar extends Component {
 	render() {
 
-		let showMenu = false;
+		let showMenu: boolean = false;
 		function toggleMenu() {
 			let hamburger = document.querySelector('.menu-btn__burger');
 			let nav = document.querySelector('.nav');
@@ -38,9 +37,9 @@ class Header extends Component {
 				<nav className="nav">
 					<ul className="menu-nav">
 						<li className="menu-nav__item active">
-							<a href="/" className="menu-nav__link">
+							<Link to={ROUTES.HOME} className="menu-nav__link">
 								Home
-							</a>
+							</Link>
 						</li>
 						<li className="menu-nav__item" onClick={ toggleMenu }>
 							<Link to="/pedidos" className="menu-nav__link">
@@ -48,12 +47,12 @@ class Header extends Component {
 							</Link>
 						</li>
 						<li className="menu-nav__item" onClick={ toggleMenu }>
-							<Link to="/contact" className="menu-nav__link" aria-label="contact">
+							<Link to={ROUTES.CONTACT} className="menu-nav__link" aria-label="contact">
 								Fale conosco
 							</Link>
 						</li>
 						<li className="menu-nav__item" onClick={ toggleMenu }>
-							<Link to="/login" className="menu-nav__link" aria-label="login">
+							<Link to={ROUTES.LOGIN} className="menu-nav__link" aria-label="login">
 								<FontAwesomeIcon icon={faUser} size={"sm"} />
 							</Link>
 						</li>
@@ -64,4 +63,4 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+export default NavBar;

@@ -1,9 +1,7 @@
-import MyRoutes from "Routes";
-
-
+import HomeRoutes from "Routes";
 function App() {
 	return (
-		<MyRoutes />
+		<HomeRoutes />
 	);
 }
 

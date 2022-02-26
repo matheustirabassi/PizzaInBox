@@ -5,9 +5,12 @@ import Card4 from "assets/img/card-pizza-dois-queijos.jpg";
 import Card5 from "assets/img/card-pizza-portuguesa.jpg";
 import Card6 from "assets/img/card-pizza-da-casa.jpg";
 import SocialIcons from "components/SocialIcons";
+import NavBar from "components/NavBar";
 
 function Home() {
 	return (
+		<>
+			<NavBar />
 			<main>
 				<section className="home">
 					<div className="home__bio-image">
@@ -67,6 +70,7 @@ function Home() {
 					<SocialIcons />
 				</section>
 			</main>
+		</>
 	);
 }
 
