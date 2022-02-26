@@ -24,7 +24,7 @@ function FormCard({ productId }: Props) {
 			.then((response) => {
 				setProduct(response.data);
 			})
-	}, [])
+	}, [productId])
 
 	const useStyles = makeStyles({
 		form: {
