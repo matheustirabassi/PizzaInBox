@@ -96,11 +96,3 @@ function FormCard({ productId }: Props) {
 }
 
 export default FormCard;
-
-function getInitialValues() {
-	throw new Error("Function not implemented.");
-}
-function then(): any {
-	throw new Error("Function not implemented.");
-}
-
