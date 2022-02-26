@@ -1,4 +1,3 @@
-import Home from "pages/Home";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "Routes";
