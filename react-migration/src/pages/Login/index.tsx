@@ -27,8 +27,14 @@ function Login() {
 
 		axios(config)
 			.then((res) => {
+				const data = res.data
+				if(data === "ADMIN") {
+					navigate("/admin");
+				}
+				else {
 				console.log(res);
 				navigate("/");
+			}
 			})
 			.catch((error) => {
 				console.error(error)
